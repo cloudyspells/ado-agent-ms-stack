@@ -1,0 +1,12 @@
+trigger: none
+pr:
+  autoCancel: true
+  branches:
+    include:
+    - main
+
+jobs:
+- template: image-generation.yml
+  parameters:
+    image_type: ubuntu2204
+    image_readme_name: Ubuntu2204-Readme.md
