@@ -92,7 +92,7 @@ variable "location" {
 
 variable "private_virtual_network_with_public_ip" {
   type    = bool
-  default = false
+  default = true
 }
 
 variable "resource_group" {
