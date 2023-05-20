@@ -46,7 +46,7 @@ jobs:
         if: ${{ env.CHECKOUT_TYPE == 'main' }}
         uses: actions/checkout@v3
         with:
-          repository: actions/runner-images
+          repository: cloudyspells/ado-agent-ms-stack
 
       - name: Checkout PR
         if: ${{ env.CHECKOUT_TYPE == 'pull_request' }}
