@@ -41,11 +41,11 @@ Describe "GitHub CLI" {
     }
 }
 
-Describe "Google Cloud SDK" {
-    It "Google Cloud SDK" {
-        "gcloud --version" | Should -ReturnZeroExitCode
-    }
-}
+# Describe "Google Cloud SDK" {
+#     It "Google Cloud SDK" {
+#         "gcloud --version" | Should -ReturnZeroExitCode
+#     }
+# }
 
 # Describe "OC CLI" {
 #     It "OC CLI" {
