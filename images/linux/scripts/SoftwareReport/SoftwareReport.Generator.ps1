@@ -116,9 +116,9 @@ $tools.AddToolVersion("Docker Compose v2", $(Get-DockerComposeV2Version))
 $tools.AddToolVersion("Docker-Buildx", $(Get-DockerBuildxVersion))
 $tools.AddToolVersion("Docker-Moby Client", $(Get-DockerMobyClientVersion))
 $tools.AddToolVersion("Docker-Moby Server", $(Get-DockerMobyServerVersion))
-if ((Test-IsUbuntu20) -or (Test-IsUbuntu22)) {
-    $tools.AddToolVersion("Fastlane", $(Get-FastlaneVersion))
-}
+# if ((Test-IsUbuntu20) -or (Test-IsUbuntu22)) {
+#     $tools.AddToolVersion("Fastlane", $(Get-FastlaneVersion))
+# }
 $tools.AddToolVersion("Git", $(Get-GitVersion))
 $tools.AddToolVersion("Git LFS", $(Get-GitLFSVersion))
 $tools.AddToolVersion("Git-ftp", $(Get-GitFTPVersion))
@@ -128,7 +128,7 @@ if (Test-IsUbuntu20) {
     $tools.AddToolVersion("HHVM (HipHop VM)", $(Get-HHVMVersion))
 }
 $tools.AddToolVersion("jq", $(Get-JqVersion))
-$tools.AddToolVersion("Kind", $(Get-KindVersion))
+#$tools.AddToolVersion("Kind", $(Get-KindVersion))
 $tools.AddToolVersion("Kubectl", $(Get-KubectlVersion))
 $tools.AddToolVersion("Kustomize", $(Get-KustomizeVersion))
 #$tools.AddToolVersion("Leiningen", $(Get-LeiningenVersion))
