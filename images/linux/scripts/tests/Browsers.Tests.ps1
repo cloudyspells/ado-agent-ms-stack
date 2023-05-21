@@ -34,10 +34,10 @@ Describe "Edge" {
     }
 }
 
-/*
+<#
 Describe "Chromium" {
     It "Chromium" {
         "chromium-browser --version" | Should -ReturnZeroExitCode
     }
 }
-*/
+#>
