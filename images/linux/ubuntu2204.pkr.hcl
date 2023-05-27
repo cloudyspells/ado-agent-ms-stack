@@ -150,6 +150,8 @@ source "azure-arm" "build_vhd" {
   build_resource_group_name              = "${var.build_resource_group_name}"
   capture_container_name                 = "images"
   capture_name_prefix                    = "${var.capture_name_prefix}"
+  managed_image_name                     = "ubuntu2204-${var.capture_name_prefix}"
+  managed_image_resource_group_name      = "${var.resource_group}"
   client_id                              = "${var.client_id}"
   client_secret                          = "${var.client_secret}"
   client_cert_path                       = "${var.client_cert_path}"
