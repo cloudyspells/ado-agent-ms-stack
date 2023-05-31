@@ -1,0 +1,77 @@
+name: Release to Community
+on:
+  workflow_call:
+    inputs:
+      image_run_number:
+        description: 'Image run number'
+        required: true
+        type: string
+      release:
+        description: 'Release version'
+        type: string
+        required: true
+      image_name:
+        description: 'Image name'
+        type: string
+        required: true
+      os_type:
+        description: 'OS type'
+        type: string
+        required: true
+        default: 'Linux'
+
+permissions:
+  contents: write
+  packages: write
+
+jobs:	
+  release:
+    runs-on: ubuntu-latest
+    steps:
+
+      - name: Checkout this Projects Wiki
+        uses: actions/checkout@v3
+        with:
+          repository: 'cloudyspells/ado-agent-ms-stack.wiki'
+          path: wiki
+
+      - name: Download readme artifact
+        uses: actions/download-artifact@v2
+        with:
+          name: Readme
+          path: readme
+
+      - name: Copy readme to wiki
+        run: cp -r readme/* wiki
+
+      - name: Commit and push changes to wiki
+        shell: bash
+        working-directory: ./wiki
+        run: |
+          git config user.name github-actions
+          git config user.email github-actions@github.com
+          git add .
+          git commit -m "generated docs from actions workflow"
+          git push
+
+      - name: Login to Azure
+        uses: azure/login@v1
+        with:
+          creds: ${{ secrets.AZURE_CREDENTIALS }}
+
+      - name: Publish to Shared Image Gallery
+        uses: azure/CLI@v1
+        with:
+          inlineScript: |
+            # Get the managed image ID
+            IMAGE_ID=$(az image list --resource-group ${{ secrets.AZURE_RESOURCE_GROUP }} --query "[?contains(name, '${{ inputs.image_name }}-${{ inputs.image_run_number }}')].id" -o tsv)
+            az sig image-version create \
+              --resource-group ${{ secrets.AZURE_RESOURCE_GROUP }} \
+              --gallery-name ${{ secrets.AZURE_GALLERY_NAME }} \
+              --gallery-image-definition 'ado-agent-${{ inputs.image_name }}' \
+              --gallery-image-version ${{ inputs.release }} \
+              --managed-image $IMAGE_ID \
+              --os-state generalized \
+              --os-type ${{ inputs.os_type }} \
+              --exclude-from-cleaning ${{ secrets.AZURE_EXCLUDE_FROM_CLEANING }} \
+              --force-string
