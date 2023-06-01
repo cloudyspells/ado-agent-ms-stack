@@ -59,6 +59,32 @@ jobs:
         with:
           creds: ${{ secrets.AZURE_CREDENTIALS }}
 
+      - name: Create Managed Image from VHD
+        uses: azure/CLI@v1
+        with:
+          inlineScript: |
+            # Get the latest VHD URL from the storage account
+            IMAGE_URL=$(az storage blob list \
+              --account-name ${{ secrets.AZURE_STORAGE_ACCOUNT }} \
+              --container-name system \
+              --query "[?contains(name, 'vhd')].name" \
+              --output tsv \
+              | sort -r \
+              | head -n 1 \
+              | xargs -I {} az storage blob url \
+                --account-name ${{ secrets.AZURE_STORAGE_ACCOUNT }} \
+                --container-name system \
+                --name {} \
+                --output tsv)
+            
+            az image create \
+              --resource-group ${{ secrets.AZURE_RESOURCE_GROUP }} \
+              --name ${{ inputs.image_name }}-${{ inputs.image_run_number }} \
+              --source $IMAGE_URL \
+              --os-type ${{ inputs.os_type }} \
+              --location westeurope \
+              --force-string
+
       - name: Publish to Shared Image Gallery
         uses: azure/CLI@v1
         with:
