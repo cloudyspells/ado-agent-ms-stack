@@ -200,7 +200,7 @@ Describe "Kubernetes tools" {
     }
 
     It "kubectl" {
-        "kubectl version" | Should -MatchCommandOutput "Client Version: version.Info"
+        "kubectl version --client=true" | Should -MatchCommandOutput "Client Version: v"
     }
 
     It "helm" {
