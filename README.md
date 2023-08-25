@@ -5,7 +5,7 @@ This repository contains the source code for the
 [Azure DevOps Pipelines agents](https://docs.microsoft.com/en-us/azure/devops/pipelines/agents/agents?view=azure-devops)
 with Open Source Software installed. This project is derived from the official
 GitHub Actions runners project, which is available at
-[github.com/actions/runner-images](https://githunb.com/actions/runner-images).
+[github.com/actions/runner-images](https://github.com/actions/runner-images).
 
 ## Project goals
 
