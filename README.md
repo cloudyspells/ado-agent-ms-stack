@@ -18,7 +18,7 @@ available for Ubuntu 22.04 initially and a Windows 2022 version is planned.
 ## Agent Image Distribution
 
 You can either build the agent images yourself or use the pre-built images from
-the Community Compute Gallery in Azure and the Azure Marketplace. (Coming soon)
+the Community Compute Gallery in Azure and the Azure Marketplace.
 
 ## Using the pre-built agent images from Azure Marketplace
 
