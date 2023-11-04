@@ -182,10 +182,6 @@ Describe "Git" {
     It "git-ftp" {
         "git-ftp --version" | Should -ReturnZeroExitCode
     }
-
-    It "hub-cli" {
-        "hub --version" | Should -ReturnZeroExitCode
-    }
 }
 
 Describe "Julia" {
