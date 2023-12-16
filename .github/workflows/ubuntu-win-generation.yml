@@ -65,10 +65,10 @@ jobs:
         run: |
           $ImageType = "${{ inputs.image_name }}"
 
-          if ($ImageType.StartsWith("ubuntu")) { $TemplateDirectoryName = "ubuntu/templates" } else { $TemplateDirectoryName = "win" }
+          if ($ImageType.StartsWith("ubuntu")) { $TemplateDirectoryName = "ubuntu" } else { $TemplateDirectoryName = "win" }
 
           $TemplateDirectoryPath = Join-Path "images" $TemplateDirectoryName | Resolve-Path
-          $TemplatePath = Join-Path $TemplateDirectoryPath "$ImageType.pkr.hcl"
+          $TemplatePath = Join-Path $TemplateDirectoryPath "templates/$ImageType.pkr.hcl"
 
           if ( -not (Test-Path $TemplatePath) ) {
             $TemplatePath = Join-Path $TemplateDirectoryPath "$ImageType.json"
