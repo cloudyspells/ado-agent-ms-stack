@@ -61,7 +61,7 @@ $languageAndRuntime.AddToolVersion("Python", $(Get-PythonVersion))
 $packageManagement = $installedSoftware.AddHeader("Package Management")
 #$packageManagement.AddToolVersion("cpan", $(Get-CpanVersion))
 $packageManagement.AddToolVersion("Helm", $(Get-HelmVersion))
-$packageManagement.AddToolVersion("Homebrew", $(Get-HomebrewVersion))
+# $packageManagement.AddToolVersion("Homebrew", $(Get-HomebrewVersion))
 $packageManagement.AddToolVersion("Miniconda", $(Get-MinicondaVersion))
 $packageManagement.AddToolVersion("Npm", $(Get-NpmVersion))
 $packageManagement.AddToolVersion("NuGet", $(Get-NuGetVersion))
@@ -80,11 +80,11 @@ $packageManagement.AddHeader("Environment variables").AddTable($(Build-PackageMa
 # '@)
 
 # Project Management
-$projectManagement = $installedSoftware.AddHeader("Project Management")
-if (Test-IsUbuntu20) {
-    $projectManagement.AddToolVersion("Ant", $(Get-AntVersion))
-    $projectManagement.AddToolVersion("Gradle", $(Get-GradleVersion))
-}
+# $projectManagement = $installedSoftware.AddHeader("Project Management")
+# if (Test-IsUbuntu20) {
+#     $projectManagement.AddToolVersion("Ant", $(Get-AntVersion))
+#     $projectManagement.AddToolVersion("Gradle", $(Get-GradleVersion))
+# }
 # if ((Test-IsUbuntu20) -or (Test-IsUbuntu22)) {
 #     $projectManagement.AddToolVersion("Lerna", $(Get-LernaVersion))
 # }
