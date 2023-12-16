@@ -143,9 +143,21 @@ variable "vm_size" {
   default = "Standard_D4s_v4"
 }
 
+variable "resource_group_name" {
+  type    = string
+  default = "${env("ARM_RESOURCE_GROUP")}"
+}
+
+variable "storage_account" {
+  type    = string
+  default = "${env("ARM_STORAGE_ACCOUNT")}"
+}
+
 source "azure-arm" "build_image" {
   allowed_inbound_ip_addresses           = "${var.allowed_inbound_ip_addresses}"
   build_resource_group_name              = "${var.build_resource_group_name}"
+  capture_container_name                 = "images"
+  capture_name_prefix                    = "packer"
   client_cert_path                       = "${var.client_cert_path}"
   client_id                              = "${var.client_id}"
   client_secret                          = "${var.client_secret}"
@@ -153,11 +165,13 @@ source "azure-arm" "build_image" {
   image_publisher                        = "canonical"
   image_sku                              = "22_04-lts"
   location                               = "${var.location}"
-  managed_image_name                     = "${local.managed_image_name}"
-  managed_image_resource_group_name      = "${var.managed_image_resource_group_name}"
+  // managed_image_name                     = "${local.managed_image_name}"
+  // managed_image_resource_group_name      = "${var.managed_image_resource_group_name}"
   os_disk_size_gb                        = "86"
   os_type                                = "Linux"
   private_virtual_network_with_public_ip = "${var.private_virtual_network_with_public_ip}"
+  resource_group_name                    = "${var.resource_group_name}" 
+  storage_account                        = "${var.storage_account}"
   subscription_id                        = "${var.subscription_id}"
   temp_resource_group_name               = "${var.temp_resource_group_name}"
   tenant_id                              = "${var.tenant_id}"
