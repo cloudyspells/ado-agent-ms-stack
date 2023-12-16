@@ -153,11 +153,16 @@ variable "storage_account" {
   default = "${env("ARM_STORAGE_ACCOUNT")}"
 }
 
+variable "capture_name_prefix" {
+  type    = string
+  default = "packer"
+}
+
 source "azure-arm" "build_image" {
   allowed_inbound_ip_addresses           = "${var.allowed_inbound_ip_addresses}"
   build_resource_group_name              = "${var.build_resource_group_name}"
   capture_container_name                 = "images"
-  capture_name_prefix                    = "packer"
+  capture_name_prefix                    = "${var.capture_name_prefix}"
   client_cert_path                       = "${var.client_cert_path}"
   client_id                              = "${var.client_id}"
   client_secret                          = "${var.client_secret}"
