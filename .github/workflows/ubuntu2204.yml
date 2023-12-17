@@ -14,6 +14,7 @@ on:
     types: labeled
     paths:
     - 'images/linux/**'
+    - 'images/ubuntu/**'
 #  schedule:
 #    - cron: '0 0 * * *'
 
@@ -22,7 +23,7 @@ jobs:
     if: ${{ (github.event.label.name == 'CI:\ ubuntu-all') || (github.event.label.name == 'CI:\ ubuntu-2204') || (github.event_name == 'workflow_dispatch') || (github.event_name == 'schedule') }}
     uses: ./.github/workflows/ubuntu-win-generation.yml
     with:
-      image_name: 'ubuntu2204'
+      image_name: 'ubuntu-22.04'
       image_readme_name: 'Ubuntu2204-Readme.md'
       custom_repo: ${{ github.event.inputs.CUSTOM_REPOSITORY }}
       custom_repo_commit_hash: ${{ github.event.inputs.CUSTOM_REPOSITORY_COMMIT_HASH }}
