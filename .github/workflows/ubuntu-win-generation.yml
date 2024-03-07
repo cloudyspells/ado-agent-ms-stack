@@ -44,19 +44,19 @@ jobs:
 
       - name: Checkout repository
         if: ${{ env.CHECKOUT_TYPE == 'main' }}
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
         with:
           repository: cloudyspells/ado-agent-ms-stack
 
       - name: Checkout PR
         if: ${{ env.CHECKOUT_TYPE == 'pull_request' }}
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
         with:
           ref: ${{ github.event.pull_request.head.sha }}
 
       - name: Checkout custom repository
         if: ${{ env.CHECKOUT_TYPE == 'custom_repo' }}
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
         with:
           repository: '${{ inputs.custom_repo }}'
           ref: '${{ inputs.custom_repo_commit_hash }}'
